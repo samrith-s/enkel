@@ -1,0 +1,22 @@
+{
+    "name": "enkel-example",
+    "homepage": "https://samrith-s.github.io/enkel",
+    "version": "0.0.0",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    },
+    "devDependencies": {
+        "react-scripts": "^3.0.1"
+    },
+    "dependencies": {
+        "enkel-ui": "link:..",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
+    }
+}
