@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-type SelectType = {
+export interface SelectType {
     children?: ReactNode;
     component?: Function;
-};
-
-export default SelectType;
+}

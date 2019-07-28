@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-type FlexType = {
+export interface FlexType {
     children?: ReactNode;
     component?: Function;
-};
-
-export default FlexType;
+}

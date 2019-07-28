@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-type ContainerType = {
+export interface ContainerType {
     children?: ReactNode;
     component?: Function;
-};
-
-export default ContainerType;
+}

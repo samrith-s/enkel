@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-type AnchorProps = {
+export interface AnchorProps {
     children?: ReactNode;
     component?: Function;
     href: string;
@@ -8,6 +8,4 @@ type AnchorProps = {
     alt: string;
     target?: string;
     rel?: string | 'noopener noreferrer';
-};
-
-export default AnchorProps;
+}

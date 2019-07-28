@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-type FormType = {
+export interface FormType {
     children?: ReactNode;
     component?: Function;
-};
-
-export default FormType;
+}

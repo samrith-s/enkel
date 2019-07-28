@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-type HeadingType = {
+export interface HeadingType {
     children?: ReactNode;
     component?: Function;
-};
-
-export default HeadingType;
+}

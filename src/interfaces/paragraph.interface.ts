@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-type ParagraphType = {
+export interface ParagraphType {
     children?: ReactNode;
     component?: Function;
-};
-
-export default ParagraphType;
+}
