@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import ExampleComponent from 'enkel'
+import { Span } from 'enkel-ui';
 
 export default class App extends Component {
-  render () {
-    return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div>
+                <Span>Here is a Span!</Span>
+            </div>
+        );
+    }
 }
