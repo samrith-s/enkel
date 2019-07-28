@@ -12,9 +12,9 @@
         "cosmos": "cosmos"
     },
     "devDependencies": {
-        "@babel/core": "^7.5.5",
-        "@babel/preset-env": "^7.5.5",
+        "@babel/preset-react": "^7.0.0",
         "babel-eslint": "^10.0.2",
+        "babel-loader": "^8.0.6",
         "eslint": "^6.1.0",
         "eslint-config-prettier": "^6.0.0",
         "eslint-plugin-import": "^2.18.2",
@@ -32,6 +32,8 @@
         "stylelint-processor-styled-components": "^1.8.0"
     },
     "dependencies": {
+        "@babel/core": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
         "enkel-ui": "link:..",
         "prop-types": "^15.7.2",
         "react": "^16.8.6",
