@@ -17,6 +17,7 @@
         "test:watch": "react-scripts-ts test --env=jsdom",
         "build": "rollup -c",
         "start": "rollup -c -w",
+        "start:example": "cd example && yarn start",
         "prepare": "yarn run build",
         "predeploy": "cd example && yarn install && yarn run build",
         "deploy": "gh-pages -d example/build"
@@ -32,6 +33,7 @@
         "@types/jest": "^23.1.5",
         "@types/react": "^16.8.23",
         "@types/react-dom": "^16.8.5",
+        "@types/styled-components": "^4.1.18",
         "@typescript-eslint/eslint-plugin": "^1.13.0",
         "@typescript-eslint/parser": "^1.13.0",
         "babel-runtime": "^6.26.0",
