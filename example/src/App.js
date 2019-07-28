@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import { Span } from 'enkel-ui';
+import { Form } from 'enkel-ui';
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <Span>Here is a Span!</Span>
+                <Form>Here is a Span!</Form>
             </div>
         );
     }
