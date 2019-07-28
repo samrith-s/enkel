@@ -1,9 +1,16 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent } from 'react';
 
-type Props = {
-    children?: ReactNode;
-};
+import SpanType from './span.types';
 
-const Span: FunctionComponent<Props> = ({ children }) => <div>{children}</div>;
+const Span: FunctionComponent<SpanType> = ({
+    children,
+    component: Component,
+    ...rest
+}) =>
+    Component ? (
+        <Component {...rest}>{children}</Component>
+    ) : (
+        <div>{children}</div>
+    );
 
 export default Span;
