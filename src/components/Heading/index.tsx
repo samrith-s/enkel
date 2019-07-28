@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import HeadingType from './heading.types';
+import HeadingType from 'interfaces/heading.interface';
 
 const Heading: FunctionComponent<HeadingType> = ({
     children,
