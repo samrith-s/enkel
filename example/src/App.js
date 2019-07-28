@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 
-import { Form } from 'enkel-ui';
+import { ThemeProvider, Form } from 'enkel-ui';
+
+import GlobalStyle from './styles';
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <Form>Here is a Span!</Form>
+                <ThemeProvider
+                    colors={{
+                        dark: '#fff'
+                    }}
+                >
+                    <>
+                        <GlobalStyle />
+                        <Form>Here is a Span!</Form>
+                    </>
+                </ThemeProvider>
             </div>
         );
     }
