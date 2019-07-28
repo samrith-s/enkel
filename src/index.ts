@@ -1,1 +1,1 @@
-export function hello(world: string): void;
+export { default as Span } from 'components/Span';
