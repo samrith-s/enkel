@@ -1,13 +1,16 @@
 {
     "extends": [
-        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:import/errors",
         "plugin:import/warnings",
         "prettier",
         "prettier/react"
     ],
     "plugins": ["react", "react-hooks", "import", "prettier"],
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "settings": {
         "import/resolver": {
             "node": {
