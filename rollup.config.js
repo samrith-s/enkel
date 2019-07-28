@@ -25,6 +25,7 @@ export default {
             sourcemap: true
         }
     ],
+    external: ['styled-components'],
     plugins: [
         external(),
         includePaths({ paths: ['./src'] }),
