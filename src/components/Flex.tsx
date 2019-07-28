@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import FlexType from './flex.types';
+import FlexType from 'interfaces/flex.interface';
 
 const Flex: FunctionComponent<FlexType> = ({
     children,

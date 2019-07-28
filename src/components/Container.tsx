@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import ContainerType from './container.types';
+import ContainerType from 'interfaces/container.interface';
 
 const Container: FunctionComponent<ContainerType> = ({
     children,

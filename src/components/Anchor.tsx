@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import AnchorProps from './anchor.types';
+import AnchorProps from 'interfaces/anchor.interface';
 
 const Anchor: FunctionComponent<AnchorProps> = ({
     children,
