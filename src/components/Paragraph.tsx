@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import ParagraphType from 'interfaces/paragraph.interface';
+import { ParagraphType } from 'interfaces/paragraph.interface';
 
-const Paragraph: FunctionComponent<ParagraphType> = ({
+export const Paragraph: FunctionComponent<ParagraphType> = ({
     children,
     component: Component,
     ...rest
@@ -12,5 +12,3 @@ const Paragraph: FunctionComponent<ParagraphType> = ({
     ) : (
         <div>{children}</div>
     );
-
-export default Paragraph;

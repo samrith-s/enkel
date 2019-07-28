@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import ContainerType from 'interfaces/container.interface';
+import { ContainerType } from 'interfaces/container.interface';
 
-const Container: FunctionComponent<ContainerType> = ({
+export const Container: FunctionComponent<ContainerType> = ({
     children,
     component: Component,
     ...rest
@@ -12,5 +12,3 @@ const Container: FunctionComponent<ContainerType> = ({
     ) : (
         <div>{children}</div>
     );
-
-export default Container;

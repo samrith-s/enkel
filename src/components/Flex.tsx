@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import FlexType from 'interfaces/flex.interface';
+import { FlexType } from 'interfaces/flex.interface';
 
-const Flex: FunctionComponent<FlexType> = ({
+export const Flex: FunctionComponent<FlexType> = ({
     children,
     component: Component,
     ...rest
@@ -12,5 +12,3 @@ const Flex: FunctionComponent<FlexType> = ({
     ) : (
         <div>{children}</div>
     );
-
-export default Flex;

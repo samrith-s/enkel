@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import AnchorProps from 'interfaces/anchor.interface';
+import { AnchorProps } from 'interfaces/anchor.interface';
 
-const Anchor: FunctionComponent<AnchorProps> = ({
+export const Anchor: FunctionComponent<AnchorProps> = ({
     children,
     component: Component,
     ...rest
@@ -12,5 +12,3 @@ const Anchor: FunctionComponent<AnchorProps> = ({
     ) : (
         <a {...rest}>{children}</a>
     );
-
-export default Anchor;

@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import HeadingType from 'interfaces/heading.interface';
+import { HeadingType } from 'interfaces/heading.interface';
 
-const Heading: FunctionComponent<HeadingType> = ({
+export const Heading: FunctionComponent<HeadingType> = ({
     children,
     component: Component,
     ...rest
@@ -12,5 +12,3 @@ const Heading: FunctionComponent<HeadingType> = ({
     ) : (
         <div>{children}</div>
     );
-
-export default Heading;
