@@ -23,8 +23,9 @@
         "deploy": "gh-pages -d example/build"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^^16.8.0"
+        "react": "^16.8",
+        "react-dom": "^^16.8",
+        "styled-components": "^4"
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",
