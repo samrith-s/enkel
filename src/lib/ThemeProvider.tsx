@@ -3,7 +3,7 @@ import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-component
 
 import { ThemeProviderInterface } from 'interfaces/theme-provider.interface';
 
-import { theme } from 'defaults/theme';
+import { theme } from 'internals/defaults/theme';
 
 export const ThemeProvider: FunctionComponent<ThemeProviderInterface> = ({
     colors,
