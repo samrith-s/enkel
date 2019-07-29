@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import { ReactElement } from 'react';
 
 export interface ThemeInterface {
     colors: ThemeColorsInterface;
-    variables: ThemeVariablesInterface;,
+    variables: ThemeVariablesInterface;
 }
 
 export interface ThemeColorsInterface {
@@ -15,14 +15,16 @@ export interface ThemeColorsInterface {
     yellow?: string;
     orange?: string;
     red?: string;
+    [key: string]: string;
 }
 export interface ThemeVariablesInterface {
     margin?: string;
     padding?: string;
     borderRadius?: string;
     maxWidth?: string;
+    [key: string]: string;
 }
 
 export interface ThemeProviderInterface extends ThemeInterface {
-    children: ReactElement
+    children: ReactElement;
 }
