@@ -1,27 +1,37 @@
 import React, { FunctionComponent } from 'react';
-import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledComponentsThemeProvider } from 'styled';
 
 import { ThemeProviderInterface } from 'interfaces/theme-provider.interface';
 
 import { theme } from 'internals/defaults/theme';
 
+import { GlobalStyles } from 'lib/GlobalStyles';
+
 export const ThemeProvider: FunctionComponent<ThemeProviderInterface> = ({
     colors,
     variables,
+    globalStyles: CustomGlobalStyles,
     children
-}) => (
-    <StyledComponentsThemeProvider
-        theme={{
-            colors: {
-                ...theme.colors,
-                ...colors
-            },
-            variables: {
-                ...theme.variables,
-                ...variables
-            }
-        }}
-    >
-        {children}
-    </StyledComponentsThemeProvider>
-);
+}) => {
+    const GlobalStylesComponent = CustomGlobalStyles || GlobalStyles;
+
+    return (
+        <StyledComponentsThemeProvider
+            theme={{
+                colors: {
+                    ...theme.colors,
+                    ...colors
+                },
+                variables: {
+                    ...theme.variables,
+                    ...variables
+                }
+            }}
+        >
+            <>
+                <GlobalStylesComponent />
+                {children}
+            </>
+        </StyledComponentsThemeProvider>
+    );
+};
