@@ -1,0 +1,27 @@
+{
+    "import styled": {
+        "prefix": "scs",
+        "body": ["import styled from 'styled-components';", "$0"],
+        "description": "[Styled Components] Import 'styled'"
+    },
+    "create styled": {
+        "prefix": "scc",
+        "body": ["const $1 = styled.$2`", "$0", "`"],
+        "description": "[Styled Components] Create a styled component"
+    },
+    "props": {
+        "prefix": "scp",
+        "body": ["${props => props.$0}"],
+        "description": "[Styled Components] Access props"
+    },
+    "theme colors": {
+        "prefix": "sctc",
+        "body": ["${props => props.theme.colors.$0}"],
+        "description": "[Styled Components] Theme color selector"
+    },
+    "theme variables": {
+        "prefix": "sctv",
+        "body": ["${props => props.theme.variables.$0}"],
+        "description": "[Styled Components] Theme variable selector"
+    }
+}
