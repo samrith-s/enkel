@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 
-export default function RenderAppripriate(
+export default function RenderAppropriate(
     DefaultComponent: Function,
     props: Object,
     children: ReactNode | ReactElement,
