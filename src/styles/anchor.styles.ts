@@ -1,7 +1,7 @@
 import styled from 'styled';
 
 export const AnchorStyle = styled.a`
-    color: ${props => props.theme.colors.primary};
+    color: ${({ theme: { colors } }) => colors.primary};
     text-decoration: none;
     border-bottom: 1px dotted transparent;
     cursor: pointer;
