@@ -1,12 +1,16 @@
-import { ThemeInterface } from 'interfaces/theme-provider.interface';
+import { DefaultTheme } from 'styled-components';
 
-export const theme: ThemeInterface = {
+export const theme: DefaultTheme = {
     colors: {
         dark: '#212026',
         light: '#f9f9f9',
         primary: '#f9703c',
         secondary: '#21002d',
-        yellow: '#ffe12c'
+        yellow: '#ffe12c',
+        green: 'green',
+        blue: 'blue',
+        orange: 'orange',
+        red: 'red'
     },
     variables: {
         margin: '10px',
