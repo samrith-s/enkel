@@ -1,14 +1,14 @@
-import React, { FunctionComponent } from 'react';
+import { EnkelComponent } from 'interfaces';
+import { ContianerProps } from 'interfaces/container.interface';
 
-import { ContainerType } from 'interfaces/container.interface';
+import RenderAppropriate from 'internals/RenderAppropriate';
 
-export const Container: FunctionComponent<ContainerType> = ({
+import { ContainerStyle } from 'styles/container.styles';
+
+export const Container: EnkelComponent<ContainerProps> = ({
     children,
     component: Component,
     ...rest
-}) =>
-    Component ? (
-        <Component {...rest}>{children}</Component>
-    ) : (
-        <div>{children}</div>
-    );
+}) => RenderAppropriate(AnchorStyle, rest, children, Component);
+
+Container.Style = ContainerStyle;
