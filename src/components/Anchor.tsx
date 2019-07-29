@@ -1,13 +1,14 @@
-import { FunctionComponent } from 'react';
-
+import { EnkelComponent } from 'interfaces';
 import { AnchorProps } from 'interfaces/anchor.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
-import { AnchorComponent } from 'styles/anchor.styles';
+import { AnchorStyle } from 'styles/anchor.styles';
 
-export const Anchor: FunctionComponent<AnchorProps> = ({
+export const Anchor: EnkelComponent<AnchorProps> = ({
     children,
     component: Component,
     ...rest
-}) => RenderAppropriate(AnchorComponent, rest, children, Component);
+}) => RenderAppropriate(AnchorStyle, rest, children, Component);
+
+Anchor.Style = AnchorStyle;
