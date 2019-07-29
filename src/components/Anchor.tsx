@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react';
 import { AnchorProps } from 'interfaces/anchor.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
+
 import { AnchorComponent } from 'styles/anchor.styles';
 
 export const Anchor: FunctionComponent<AnchorProps> = ({
