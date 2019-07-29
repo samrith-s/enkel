@@ -1,5 +1,6 @@
 import { EnkelComponent } from 'interfaces';
-import { ContianerProps } from 'interfaces/container.interface';
+
+import { ContainerProps } from 'interfaces/container.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
@@ -9,6 +10,6 @@ export const Container: EnkelComponent<ContainerProps> = ({
     children,
     component: Component,
     ...rest
-}) => RenderAppropriate(AnchorStyle, rest, children, Component);
+}) => RenderAppropriate(ContainerStyle, rest, children, Component);
 
 Container.Style = ContainerStyle;
