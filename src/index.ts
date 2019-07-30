@@ -18,3 +18,5 @@ export { Paragraph } from 'components/typography/Paragraph';
 export { Select } from 'components/form/Select';
 // export { default as Checkbox } from 'components/Checkbox';
 // export { default as Radio } from 'components/Radio';
+
+export { Card } from 'components/display/Card';
