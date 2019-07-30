@@ -22,6 +22,7 @@ export interface ThemeVariablesInterface {
     padding?: string;
     borderRadius?: string;
     maxWidth?: string;
+    baseFontSize?: string;
     [key: string]: string;
 }
 
