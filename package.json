@@ -23,10 +23,10 @@
         "deploy": "gh-pages -d example/build"
     },
     "peerDependencies": {
+        "polished": "^3.4",
         "react": "^16.8",
         "react-dom": "^^16.8",
-        "styled-components": "^4",
-        "polished": "^3.4"
+        "styled-components": "^4"
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",
@@ -38,6 +38,7 @@
         "@types/styled-components": "^4.1.18",
         "@typescript-eslint/eslint-plugin": "^1.13.0",
         "@typescript-eslint/parser": "^1.13.0",
+        "babel-plugin-typescript-to-proptypes": "^0.17.1",
         "babel-runtime": "^6.26.0",
         "cross-env": "^5.1.4",
         "eslint": "^6.1.0",
@@ -73,5 +74,8 @@
     },
     "files": [
         "dist"
-    ]
+    ],
+    "dependencies": {
+        "prop-types": "^15.7.2"
+    }
 }
