@@ -1,6 +1,6 @@
 import { EnkelComponent } from 'interfaces';
 
-import { FlexProps } from 'interfaces/display/flex.interface';
+import { FlexProps } from 'interfaces/layout/flex.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 

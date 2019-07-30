@@ -1,6 +1,6 @@
 import { EnkelComponent } from 'interfaces';
 
-import { ContainerProps } from 'interfaces/display/container.interface';
+import { ContainerProps } from 'interfaces/layout/container.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
