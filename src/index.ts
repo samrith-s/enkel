@@ -1,5 +1,6 @@
 // Provider
 export { ThemeProvider } from 'lib/ThemeProvider';
+export { GlobalStyles } from 'lib/GlobalStyles';
 
 // Wrapping components
 export { Container } from 'components/layout/Container';
