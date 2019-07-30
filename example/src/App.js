@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 
-import { ThemeProvider, Form } from 'enkel-ui';
-
-import GlobalStyle from './styles';
+import { ThemeProvider, Anchor } from 'enkel-ui';
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <ThemeProvider
-                    colors={{
-                        dark: '#fff'
-                    }}
-                >
+                <ThemeProvider>
                     <>
-                        <GlobalStyle />
-                        <Form>Here is a Span!</Form>
+                        <Anchor>Here is an Anchor!</Anchor>
                     </>
                 </ThemeProvider>
             </div>
