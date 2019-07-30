@@ -1,17 +1,16 @@
 import styled from 'styled';
-import { CardStyleProps } from 'interfaces/layout/card.interface';
+import { lighten } from 'polished';
 
-export const CardStyle = styled.div<ContainerStyleProps>`
-    display: block;
-    width: 100%;
-    max-width: ${({
-        isFluid,
-        maxWidth,
-        theme: {
-            variables: { maxWidth: themeMaxWidth }
-        }
-    }) => (isFluid ? 'none' : maxWidth || themeMaxWidth)};
-    margin: 0 auto;
-    padding: ${({ noPadding, theme: { variables } }) =>
-        noPadding ? 0 : variables.padding};
+import { CardStyleProps } from 'interfaces/display/card.interface';
+
+export const CardStyle = styled.div<CardStyleProps>`
+    display: flex;
+    flex-flow: column;
+    background: ${({ theme: { colors } }) => colors.light};
+    border: 1px solid ${({ theme: { colors } }) => lighten(0.5, colors.darken)}
+    border-radius: ${({ theme: { variables } }) => variables.borderRadius};
+`;
+
+export const CardTitleStyle = styled.div<CardTitleStyleProps>`
+    text-align: left;
 `;

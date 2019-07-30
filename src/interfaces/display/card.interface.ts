@@ -1,10 +1,20 @@
 import { ReactNode } from 'react';
-import { ComponentCommons } from 'interfaces';
+import { ComponentCommons, EnkelComponent } from 'interfaces';
 
-export type CardProps = ComponentCommons & ContainerStyleProps;
+export interface CardComponent extends EnkelComponent {
+    Title: ReactNode;
+    Body: ReactNode;
+    Footer: ReactNode;
+}
+
+export type CardProps = ComponentCommons & CardStyleProps & {};
 
 export interface CardStyleProps {
-    isFluid?: boolean | false;
+    isFluid?: boolean;
     maxWidth?: string;
-    noPadding?: boolean | false;
+    noPadding?: boolean;
+}
+
+export interface CardTitleStyleProps {
+    isSmall?: boolean;
 }
