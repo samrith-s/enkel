@@ -1,14 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import { EnkelComponent } from 'interfaces';
 
-import { FlexType } from 'interfaces/flex.interface';
+import { FlexProps } from 'interfaces/flex.interface';
 
-export const Flex: FunctionComponent<FlexType> = ({
+import RenderAppropriate from 'internals/RenderAppropriate';
+
+import { FlexStyle } from 'styles/flex.styles';
+
+export const Flex: EnkelComponent<FlexProps> = ({
     children,
     component: Component,
     ...rest
-}) =>
-    Component ? (
-        <Component {...rest}>{children}</Component>
-    ) : (
-        <div>{children}</div>
-    );
+}) => RenderAppropriate(FlexStyle, rest, children, Component);
+
+Flex.Style = FlexStyle;
