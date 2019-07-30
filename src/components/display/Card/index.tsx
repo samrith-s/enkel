@@ -14,8 +14,8 @@ export const Card: CardComponent<CardProps> = ({
     ...rest
 }) => RenderAppropriate(CardStyle, rest, children, Component);
 
-Card.Title = CardFooter;
-Card.Body = CardBody;
 Card.Title = CardTitle;
+Card.Body = CardBody;
+Card.Footer = CardFooter;
 
 Card.Style = CardStyle;
