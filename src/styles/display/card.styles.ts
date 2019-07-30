@@ -1,7 +1,10 @@
 import styled from 'styled';
 import { lighten } from 'polished';
 
-import { CardStyleProps } from 'interfaces/display/card.interface';
+import {
+    CardStyleProps,
+    CardTitleStyleProps
+} from 'interfaces/display/card.interface';
 
 export const CardStyle = styled.div<CardStyleProps>`
     display: flex;
@@ -12,5 +15,13 @@ export const CardStyle = styled.div<CardStyleProps>`
 `;
 
 export const CardTitleStyle = styled.div<CardTitleStyleProps>`
+    text-align: left;
+`;
+
+export const CardBodyStyle = styled.div<CardTitleStyleProps>`
+    text-align: left;
+`;
+
+export const CardFooterStyle = styled.div<CardTitleStyleProps>`
     text-align: left;
 `;

@@ -1,13 +1,17 @@
 import { ReactNode } from 'react';
-import { ComponentCommons, EnkelComponent } from 'interfaces';
+import { EnkelComponent, ComponentCommons } from 'interfaces';
 
-export interface CardComponent extends EnkelComponent {
+export interface CardComponent<T> extends EnkelComponent<T> {
     Title: ReactNode;
     Body: ReactNode;
     Footer: ReactNode;
 }
 
-export type CardProps = ComponentCommons & CardStyleProps & {};
+export type CardProps = ComponentCommons & CardStyleProps;
+
+export interface CardTitleProps extends CardProps {}
+export interface CardBodyProps extends CardProps {}
+export interface CardFooterProps extends CardProps {}
 
 export interface CardStyleProps {
     isFluid?: boolean;
