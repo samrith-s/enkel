@@ -1,12 +1,5 @@
 {
-    "presets": [
-        [
-            "env",
-            {
-                "useBuiltIns": true
-            }
-        ]
-    ],
+    "presets": ["@babel/preset-env"],
     "plugins": [
         ["babel-plugin-typescript-to-proptypes", { "forbidExtraProps": true }]
     ]
