@@ -1,5 +1,5 @@
 import styled from 'styled';
-import { FlexStyleProps } from 'interfaces/flex.interface';
+import { FlexStyleProps } from 'interfaces/display/flex.interface';
 
 export const FlexStyle = styled.div<FlexStyleProps>`
     display: ${({ display }) => display || 'flex'};

@@ -1,6 +1,6 @@
 import { EnkelComponent } from 'interfaces';
 
-import { ContainerProps } from 'interfaces/display/container.interface';
+import { CardProps } from 'interfaces/display/container.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 

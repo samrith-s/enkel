@@ -1,5 +1,5 @@
 import { EnkelComponent } from 'interfaces';
-import { AnchorProps } from 'interfaces/anchor.interface';
+import { AnchorProps } from 'interfaces/typography/anchor.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 

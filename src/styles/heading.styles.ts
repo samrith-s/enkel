@@ -1,6 +1,6 @@
 import styled, { css } from 'styled';
 import { darken, lighten } from 'polished';
-import { HeadingStyleProps } from 'interfaces/heading.interface';
+import { HeadingStyleProps } from 'interfaces/typography/heading.interface';
 
 const BaseHeadingStyles = css<HeadingStyleProps>`
     margin: ${({ noMargin, theme: { variables } }) =>

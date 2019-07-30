@@ -1,5 +1,5 @@
 import styled from 'styled';
-import { ContainerStyleProps } from 'interfaces/container.interface';
+import { ContainerStyleProps } from 'interfaces/display/container.interface';
 
 export const ContainerStyle = styled.main<ContainerStyleProps>`
     display: block;

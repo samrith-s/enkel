@@ -1,5 +1,5 @@
 import { EnkelComponent } from 'interfaces';
-import { HeadingProps } from 'interfaces/heading.interface';
+import { HeadingProps } from 'interfaces/typography/heading.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 

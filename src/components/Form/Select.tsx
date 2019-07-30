@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { SelectType } from 'interfaces/select.interface';
+import { SelectType } from 'interfaces/form/select.interface';
 
 export const Select: FunctionComponent<SelectType> = ({
     children,

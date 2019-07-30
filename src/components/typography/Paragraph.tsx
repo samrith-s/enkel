@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { ParagraphType } from 'interfaces/paragraph.interface';
+import { ParagraphType } from 'interfaces/typography/paragraph.interface';
 
 export const Paragraph: FunctionComponent<ParagraphType> = ({
     children,
