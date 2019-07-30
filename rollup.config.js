@@ -30,11 +30,11 @@ export default {
     plugins: [
         external(),
         includePaths({ paths: ['./src'] }),
-        babel({
-            extensions: ['.tsx'],
-            runtimeHelpers: true,
-            exclude: 'node_modules/**'
-        }),
+        // babel({
+        //     extensions: ['.tsx'],
+        //     exclude: 'node_modules/**',
+        //     runtimeHelpers: true
+        // }),
         postcss({
             modules: true
         }),
