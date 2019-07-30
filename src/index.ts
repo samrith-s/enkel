@@ -2,18 +2,18 @@
 export { ThemeProvider } from 'lib/ThemeProvider';
 
 // Wrapping components
-export { Container } from 'components/Container';
-export { Flex } from 'components/Flex';
+export { Container } from 'components/layout/Container';
+export { Flex } from 'components/layout/Flex';
 
 // Generic components
-export { Heading } from 'components/Heading';
-export { Anchor } from 'components/Anchor';
-export { Paragraph } from 'components/Paragraph';
+export { Heading } from 'components/typography/Heading';
+export { Anchor } from 'components/typography/Anchor';
+export { Paragraph } from 'components/typography/Paragraph';
 // export { default as Button } from 'components/Button';
 
 // Form components
-export { Form } from 'components/Form';
+// export { Form } from 'components/form/Form';
 // export { default as Input } from 'components/Input';
-export { Select } from 'components/Select';
+export { Select } from 'components/form/Select';
 // export { default as Checkbox } from 'components/Checkbox';
 // export { default as Radio } from 'components/Radio';
