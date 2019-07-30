@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'enkel-ui';
 
-import AsFixture from '../AsFixture';
+import AsFixture from '../../AsFixture';
 
 export default (
     <AsFixture
