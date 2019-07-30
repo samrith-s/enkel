@@ -4,7 +4,7 @@ import { ContainerProps } from 'interfaces/display/container.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
-import { ContainerStyle } from 'styles/container.styles';
+import { ContainerStyle } from 'styles/layout/container.styles';
 
 export const Container: EnkelComponent<ContainerProps> = ({
     children,

@@ -4,7 +4,7 @@ import { FlexProps } from 'interfaces/display/flex.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
-import { FlexStyle } from 'styles/flex.styles';
+import { FlexStyle } from 'styles/layout/flex.styles';
 
 export const Flex: EnkelComponent<FlexProps> = ({
     children,

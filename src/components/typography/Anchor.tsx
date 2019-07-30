@@ -3,7 +3,7 @@ import { AnchorProps } from 'interfaces/typography/anchor.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
-import { AnchorStyle } from 'styles/anchor.styles';
+import { AnchorStyle } from 'styles/typography/anchor.styles';
 
 export const Anchor: EnkelComponent<AnchorProps> = ({
     children,

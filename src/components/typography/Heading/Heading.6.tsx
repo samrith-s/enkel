@@ -3,7 +3,7 @@ import { HeadingProps } from 'interfaces/typography/heading.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
-import { HeadingSixStyle } from 'styles/heading.styles';
+import { HeadingSixStyle } from 'styles/typography/heading.styles';
 
 export const Six: EnkelComponent<HeadingProps> = ({
     children,

@@ -3,7 +3,7 @@ import { HeadingProps } from 'interfaces/typography/heading.interface';
 
 import RenderAppropriate from 'internals/RenderAppropriate';
 
-import { HeadingThreeStyle } from 'styles/heading.styles';
+import { HeadingThreeStyle } from 'styles/typography/heading.styles';
 
 export const Three: EnkelComponent<HeadingProps> = ({
     children,
