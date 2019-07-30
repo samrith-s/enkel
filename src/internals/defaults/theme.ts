@@ -7,10 +7,10 @@ export const theme: DefaultTheme = {
         primary: '#f9703c',
         secondary: '#21002d',
         yellow: '#ffe12c',
-        green: 'green',
-        blue: 'blue',
-        orange: 'orange',
-        red: 'red'
+        green: '#93bc48',
+        blue: '#1ac5ff',
+        orange: '#ff6c25',
+        red: '#d91d2a'
     },
     variables: {
         margin: '10px',
