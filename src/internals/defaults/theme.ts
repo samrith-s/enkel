@@ -16,6 +16,7 @@ export const theme: DefaultTheme = {
         margin: '10px',
         padding: '10px',
         borderRadius: '5px',
-        maxWidth: '1200px'
+        maxWidth: '1200px',
+        baseFontSize: '14px'
     }
 };
