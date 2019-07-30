@@ -1,9 +1,7 @@
 import { ReactNode } from 'react';
+import { ComponentCommons } from 'interfaces';
 
-export interface FlexProps extends FlexStyleProps {
-    children?: ReactNode;
-    component?: Function;
-}
+export type FlexProps = ComponentCommons & FlexStyleProps;
 
 export interface FlexStyleProps {
     display?: string;

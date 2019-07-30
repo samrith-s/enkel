@@ -1,9 +1,7 @@
 import { ReactNode } from 'react';
+import { ComponentCommons } from 'interfaces';
 
-export interface ContainerProps extends ContainerStyleProps {
-    children?: ReactNode;
-    component?: Function;
-}
+export type ContainerProps = ComponentCommons & ContainerStyleProps;
 
 export interface ContainerStyleProps {
     isFluid?: boolean | false;

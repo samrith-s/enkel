@@ -1,6 +1,4 @@
 import { ReactNode } from 'react';
+import { ComponentCommons } from 'interfaces';
 
-export interface SelectType {
-    children?: ReactNode;
-    component?: Function;
-}
+export type SelectType = ComponentCommons;

@@ -1,9 +1,7 @@
 import { ReactNode } from 'react';
+import { ComponentCommons } from 'interfaces';
 
-export interface HeadingProps extends HeadingStyleProps {
-    children?: ReactNode;
-    component?: Function;
-}
+export type HeadingProps = ComponentCommons & HeadingStyleProps;
 
 export interface HeadingStyleProps {
     noMargin?: boolean | false;

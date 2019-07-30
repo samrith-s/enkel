@@ -1,11 +1,10 @@
 import { ReactNode } from 'react';
+import { ComponentCommons } from 'interfaces';
 
-export interface AnchorProps {
-    children?: ReactNode;
-    component?: Function;
+export type AnchorProps = ComponentCommons & {
     href: string;
     title: string;
     alt: string;
     target?: string;
-    rel?: string | 'noopener noreferrer';
-}
+    rel?: string;
+};
