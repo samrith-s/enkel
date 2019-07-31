@@ -6,7 +6,11 @@ import { CardTitle } from './CardTitle';
 import { CardBody } from './CardBody';
 import { CardFooter } from './CardFooter';
 
+import { groupDisplayName } from 'internals/utils';
+
 import { CardStyle } from 'styles/display/card.styles';
+
+const applyDisplayName = groupDisplayName('Card');
 
 export const Card: CardComponent<CardProps> = ({
     children,
@@ -14,8 +18,8 @@ export const Card: CardComponent<CardProps> = ({
     ...rest
 }) => RenderAppropriate(CardStyle, rest, children, Component);
 
-Card.Title = CardTitle;
-Card.Body = CardBody;
-Card.Footer = CardFooter;
+Card.Title = applyDisplayName(CardTitle);
+Card.Body = applyDisplayName(CardBody);
+Card.Footer = applyDisplayName(CardFooter);
 
 Card.Style = CardStyle;

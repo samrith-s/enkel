@@ -5,11 +5,15 @@ import { Four } from './Heading.4';
 import { Five } from './Heading.5';
 import { Six } from './Heading.6';
 
+import { groupDisplayName } from 'internals/utils';
+
+const applyDisplayName = groupDisplayName('Heading');
+
 export const Heading = {
-    One,
-    Two,
-    Three,
-    Four,
-    Five,
-    Six
+    One: applyDisplayName(One),
+    Two: applyDisplayName(Two),
+    Three: applyDisplayName(Three),
+    Four: applyDisplayName(Four),
+    Five: applyDisplayName(Five),
+    Six: applyDisplayName(Six)
 };
