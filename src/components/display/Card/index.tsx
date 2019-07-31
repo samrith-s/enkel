@@ -6,7 +6,7 @@ import { CardTitle } from './CardTitle';
 import { CardBody } from './CardBody';
 import { CardFooter } from './CardFooter';
 
-import { groupDisplayName } from 'internals/utils';
+import { groupDisplayName } from 'utils';
 
 import { CardStyle } from 'styles/display/card.styles';
 

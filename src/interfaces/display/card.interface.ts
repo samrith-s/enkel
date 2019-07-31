@@ -21,4 +21,5 @@ export interface CardStyleProps {
 
 export interface CardTitleStyleProps {
     isSmall?: boolean;
+    align?: string;
 }

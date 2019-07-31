@@ -5,7 +5,7 @@ import { Four } from './Heading.4';
 import { Five } from './Heading.5';
 import { Six } from './Heading.6';
 
-import { groupDisplayName } from 'internals/utils';
+import { groupDisplayName } from 'utils';
 
 const applyDisplayName = groupDisplayName('Heading');
 

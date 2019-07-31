@@ -3,7 +3,7 @@ import { ThemeProvider as StyledComponentsThemeProvider } from 'styled';
 
 import { ThemeProviderInterface } from 'interfaces/theme-provider.interface';
 
-import { theme } from 'internals/defaults/theme';
+import { theme } from 'defaults/theme';
 
 import { GlobalStyles } from 'lib/GlobalStyles';
 
