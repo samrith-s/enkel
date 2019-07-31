@@ -20,3 +20,4 @@ export { Select } from 'components/form/Select';
 // export { default as Radio } from 'components/Radio';
 
 export { Card } from 'components/display/Card';
+export { AspectRatio } from 'components/display/AspectRatio';
