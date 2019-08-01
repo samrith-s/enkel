@@ -1,45 +1,42 @@
 import styled from 'styled';
-import { lighten, padding } from 'polished';
+import { lighten, margin, padding } from 'polished';
 
 import {
     CardStyleProps,
-    CardTitleStyleProps
+    CardTitleStyleProps,
+    CardFooterStyleProps
 } from 'interfaces/display/card.interface';
 
 export const CardStyle = styled.div<CardStyleProps>`
     display: flex;
     flex-flow: column;
+    ${({ isFluid, maxWidth }) => !isFluid && `width: ${maxWidth || '350px'}`};
     margin: ${({ theme: { variables } }) => variables.margin};
+    ${({ noPadding, theme: { variables } }) =>
+        !noPadding && padding(variables.padding)};
     background: ${({ theme: { colors } }) => colors.light};
-    border: 1px solid ${({ theme: { colors } }) => lighten(0.8, colors.dark)}
+    border: 1px solid ${({ theme: { colors } }) => lighten(0.8, colors.dark)};
     border-radius: ${({ theme: { variables } }) => variables.borderRadius};
 `;
 
 export const CardTitleStyle = styled.div<CardTitleStyleProps>`
     display: flex;
     flex-shrink: 0;
-    align-items: center;
-    justify-content: ${({ align }) => align};
-    min-height: 34px;
-    margin: 0 0 ${({ theme: { variables } }) => variables.margin};
-    padding: ${({ theme: { variables } }) =>
-        padding(0, variables.padding, variables.padding)};
+    align-items: ${({ vAlign }) => vAlign || 'center'};
+    ${({ hAlign }) => hAlign && `justify-content: ${hAlign}`};
+    margin: ${({ theme: { variables } }) => margin(0, 0, variables.margin)};
     font-weight: bold;
-    border-bottom: 1px solid
-        ${({ theme: { colors } }) => lighten(0.75, colors.dark)};
 `;
 
 export const CardBodyStyle = styled.div<CardTitleStyleProps>`
     flex-shrink: 1;
+    height: 100%;
 `;
 
-export const CardFooterStyle = styled.div<CardTitleStyleProps>`
+export const CardFooterStyle = styled.div<CardFooterStyleProps>`
     display: flex;
     flex-shrink: 0;
-    align-items: center;
-    min-height: 34px;
-    margin: ${({ theme: { variables } }) => variables.margin} 0 0;
-    padding: ${({ theme: { variables } }) => variables.padding} 0 0;
-    border-top: 1px solid
-        ${({ theme: { colors } }) => lighten(0.75, colors.dark)};
+    align-items: ${({ vAlign }) => vAlign || 'center'};
+    ${({ hAlign }) => hAlign && `justify-content: ${hAlign}`};
+    ${({ theme: { variables } }) => margin(variables.margin, 0, 0)};
 `;
