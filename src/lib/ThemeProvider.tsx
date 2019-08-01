@@ -12,6 +12,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderInterface> = ({
     variables,
     globalStylesAs,
     globalStyles,
+    includeFont,
     children
 }) => {
     const GlobalStylesComponent: typeof Component =
@@ -31,7 +32,10 @@ export const ThemeProvider: FunctionComponent<ThemeProviderInterface> = ({
             }}
         >
             <>
-                <GlobalStylesComponent custom={globalStyles} />
+                <GlobalStylesComponent
+                    custom={globalStyles}
+                    includeFont={includeFont}
+                />
                 {children}
             </>
         </StyledComponentsThemeProvider>

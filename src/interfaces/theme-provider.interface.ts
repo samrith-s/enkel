@@ -30,9 +30,11 @@ export interface ThemeVariablesInterface {
 export interface ThemeProviderInterface extends ThemeInterface {
     globalStyles?: CSSObject;
     globalStylesAs?: typeof Component;
+    includeFont?: boolean;
     children: ReactNode;
 }
 
 export interface GlobalStylesProps {
     custom?: CSSObject;
+    includeFont?: boolean;
 }

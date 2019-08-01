@@ -2,7 +2,9 @@ import { createGlobalStyle } from 'styled';
 import { GlobalStylesProps } from 'interfaces/theme-provider.interface';
 
 export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
-    @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap');
+    ${props =>
+        props.includeFont &&
+        "@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap')"}
 
     html, body, #root {
         width: 100%;
