@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Component } from 'react';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled';
 
 import { ThemeProviderInterface } from 'interfaces/theme-provider.interface';
@@ -10,10 +10,12 @@ import { GlobalStyles } from 'lib/GlobalStyles';
 export const ThemeProvider: FunctionComponent<ThemeProviderInterface> = ({
     colors,
     variables,
-    globalStyles: CustomGlobalStyles,
+    globalStylesAs,
+    globalStyles,
     children
 }) => {
-    const GlobalStylesComponent = CustomGlobalStyles || GlobalStyles;
+    const GlobalStylesComponent: typeof Component =
+        globalStylesAs || GlobalStyles;
 
     return (
         <StyledComponentsThemeProvider
@@ -29,7 +31,7 @@ export const ThemeProvider: FunctionComponent<ThemeProviderInterface> = ({
             }}
         >
             <>
-                <GlobalStylesComponent />
+                <GlobalStylesComponent custom={globalStyles} />
                 {children}
             </>
         </StyledComponentsThemeProvider>
