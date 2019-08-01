@@ -7,11 +7,16 @@ export interface CardComponent<T> extends EnkelComponent<T> {
     Footer: ReactNode;
 }
 
-export type CardProps = ComponentCommons & CardStyleProps;
+export type CardProps = ComponentCommons &
+    CardStyleProps & {
+        style?: string;
+    };
 
-export interface CardTitleProps extends CardProps {}
-export interface CardBodyProps extends CardProps {}
-export interface CardFooterProps extends CardProps {}
+export type CardTitleProps = CardProps;
+
+export type CardBodyProps = CardProps;
+
+export type CardFooterProps = CardProps;
 
 export interface CardStyleProps {
     isFluid?: boolean;
@@ -20,6 +25,11 @@ export interface CardStyleProps {
 }
 
 export interface CardTitleStyleProps {
-    isSmall?: boolean;
-    align?: string;
+    vAlign?: string;
+    hAlign?: string;
+}
+
+export interface CardFooterStyleProps {
+    vAlign?: string;
+    hAlign?: string;
 }
