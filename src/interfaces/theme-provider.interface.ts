@@ -1,4 +1,5 @@
-import { ReactElement, ReactComponentElement } from 'react';
+import { Component, ReactNode } from 'react';
+import { CSSObject } from 'styled-components';
 
 export interface ThemeInterface {
     colors: ThemeColorsInterface;
@@ -18,15 +19,20 @@ export interface ThemeColorsInterface {
     [key: string]: string;
 }
 export interface ThemeVariablesInterface {
-    margin?: string;
-    padding?: string;
-    borderRadius?: string;
-    maxWidth?: string;
-    baseFontSize?: string;
+    margin: string;
+    padding: string;
+    borderRadius: string;
+    maxWidth: string;
+    baseFontSize: string;
     [key: string]: string;
 }
 
 export interface ThemeProviderInterface extends ThemeInterface {
-    globalStyles?: ReactComponentElement;
-    children: ReactElement;
+    globalStyles?: CSSObject;
+    globalStylesAs?: typeof Component;
+    children: ReactNode;
+}
+
+export interface GlobalStylesProps {
+    custom?: CSSObject;
 }
