@@ -20,14 +20,11 @@ export const AspectRatio: EnkelComponent<AspectRatioProps> = ({
     ...rest
 }): JSX.Element => {
     const [width, unit] = stripUnit(size, true);
-    const [xSize, ySize] = getAspectRatio(
-        parseInt(width.toString(), 10),
-        ratio
-    );
+    const ratioSize = getAspectRatio(ratio);
 
     return (
-        <AspectRatioContainer {...rest} width={`${width + (unit || 'px')}`}>
-            <AspectRatioWrapper height={(xSize > ySize ? xSize : ySize) + '%'}>
+        <AspectRatioContainer {...rest} width={width + (unit || '%')}>
+            <AspectRatioWrapper height={ratioSize + '%'}>
                 <AspectRatioInner style={innerStyle}>
                     {children}
                 </AspectRatioInner>

@@ -1,17 +1,10 @@
-export function getAspectRatio(size: number, ratio: string): Number[] {
-    const [xAspect, yAspect]: number[] = ratio
+export function getAspectRatio(ratio: string): Number {
+    const [xAspect, yAspect] = ratio
         .split(/:|\//)
-        .map(o => parseInt(o, 10));
+        .map(o => parseInt(o, 10) || 1);
 
-    let ratioValue: number = yAspect / xAspect;
-    let xValue: number = size,
-        yValue: number = ratioValue * 100;
+    const ratioValue: number = yAspect / xAspect;
+    const ratioSize: number = ratioValue * 100;
 
-    if (xAspect < yAspect) {
-        ratioValue = xAspect / yAspect;
-        xValue = yValue;
-        yValue = ratioValue * 100;
-    }
-
-    return [xValue || 0, yValue || 0];
+    return ratioSize;
 }
