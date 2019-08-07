@@ -15,7 +15,8 @@ export const SelectStyle = styled.div<SelectStyleProps>`
 
 export const SelectInputStyle = styled.input<SelectInputStyleProps>`
     width: 100%;
-    ${padding(10, 15)};
+    ${({ theme: { variables } }) =>
+        padding(+variables.padding, +variables.padding * 1.5)};
     ${({ menuIsOpen, theme: { variables } }) =>
         !menuIsOpen
             ? `border-radius: ${variables.borderRadius}`
