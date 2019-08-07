@@ -11,7 +11,7 @@ export const CardStyle = styled.div<CardStyleProps>`
     display: flex;
     flex-flow: column;
     ${({ isFluid, maxWidth }) => !isFluid && `width: ${maxWidth || '350px'}`};
-    margin: ${({ theme: { variables } }) => variables.margin};
+    ${({ theme: { variables } }) => margin(variables.margin)};
     ${({ noPadding, theme: { variables } }) =>
         !noPadding && padding(variables.padding)};
     background: ${({ theme: { colors } }) => colors.light};
