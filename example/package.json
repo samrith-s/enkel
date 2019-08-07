@@ -34,8 +34,8 @@
     "dependencies": {
         "enkel-ui": "link:..",
         "prop-types": "^15.7.2",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6"
+        "react": "link:../node_modules/react",
+        "react-dom": "link:../node_modules/react-dom"
     },
     "browserslist": {
         "production": [
