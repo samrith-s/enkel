@@ -1,7 +1,7 @@
 {
     "import styled": {
         "prefix": "scs",
-        "body": ["import styled from 'styled-components';", "$0"],
+        "body": ["import styled from 'styled';", "$0"],
         "description": "[Styled Components] Import 'styled'"
     },
     "create styled": {
