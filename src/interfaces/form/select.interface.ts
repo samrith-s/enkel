@@ -1,4 +1,26 @@
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import { ComponentCommons } from 'interfaces';
 
-export type SelectType = ComponentCommons;
+export type SelectProps = ComponentCommons & {
+    options?: SelectOptionProps[];
+    optionRenderer?: Function;
+    onChange: Function;
+    value?: SelectOptionProps;
+    searchable?: boolean;
+};
+
+export interface SelectOptionProps {
+    value: any;
+    label: string;
+}
+
+export interface SelectStyleProps {}
+
+export interface SelectInputStyleProps {
+    menuIsOpen?: boolean;
+}
+
+export interface SelectMenuItemStyleProps {
+    isSelected?: boolean;
+    isHighlighted?: boolean;
+}
