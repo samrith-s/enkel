@@ -18,7 +18,7 @@ import { stopPropagation } from 'utils/stopPropagation';
 import {
     SelectStyle,
     SelectInputStyle,
-    SelectMenuWrapperStyle,
+    SelectMenuStyle,
     SelectMenuItemStyle
 } from 'styles/form/select.styles';
 
@@ -30,6 +30,9 @@ const SelectDefaultState = {
 export const Select: EnkelComponent<SelectProps> = ({
     children,
     component: Component,
+    inputComponent: InputComponent,
+    menuComponent: MenuComponent,
+    menuItemComponent: MenuItemComponent,
     options,
     optionRenderer,
     onChange,
@@ -45,8 +48,13 @@ export const Select: EnkelComponent<SelectProps> = ({
     const inputRef = useRef<HTMLInputElement>(null);
     const optionRefs: any[] = [];
 
+    const SelectComponent = Component || SelectStyle;
+    const SelectInputComponent = InputComponent || SelectInputStyle;
+    const SelectMenuComponent = MenuComponent || SelectMenuStyle;
+    const SelectMenuItemComponent = MenuItemComponent || SelectMenuItemStyle;
+
     const defaultRenderer: Function = (option: SelectOptionProps) => (
-        <SelectMenuItemStyle>{option.label}</SelectMenuItemStyle>
+        <SelectMenuItemComponent>{option.label}</SelectMenuItemComponent>
     );
 
     const handleChange = (selectedValue: SelectOptionProps) => (
@@ -135,13 +143,13 @@ export const Select: EnkelComponent<SelectProps> = ({
     const renderer: Function = optionRenderer || defaultRenderer;
 
     return (
-        <SelectStyle
+        <SelectComponent
             {...rest}
             className="select"
             ref={thisRef}
             onClick={handleFocus}
         >
-            <SelectInputStyle
+            <SelectInputComponent
                 type="text"
                 readOnly={!searchable}
                 placeholder="Select something..."
@@ -153,7 +161,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 onKeyPress={stopPropagation}
             />
             {showMenu && options && (
-                <SelectMenuWrapperStyle>
+                <SelectMenuComponent>
                     {options.map((option, index) =>
                         React.cloneElement(renderer(option, index), {
                             onClick: handleChange(option),
@@ -164,15 +172,15 @@ export const Select: EnkelComponent<SelectProps> = ({
                             ref: handleRef
                         })
                     )}
-                </SelectMenuWrapperStyle>
+                </SelectMenuComponent>
             )}
-        </SelectStyle>
+        </SelectComponent>
     );
 };
 
 Select.Style = {
     Main: SelectStyle,
     Input: SelectInputStyle,
-    Menu: SelectMenuWrapperStyle,
+    Menu: SelectMenuStyle,
     MenuItem: SelectMenuItemStyle
 };

@@ -1,4 +1,3 @@
-// import { ReactNode } from 'react';
 import { ComponentCommons } from 'interfaces';
 
 export type SelectProps = ComponentCommons & {
@@ -7,6 +6,9 @@ export type SelectProps = ComponentCommons & {
     onChange: Function;
     value?: SelectOptionProps;
     searchable?: boolean;
+    inputComponent?: Function;
+    menuComponent?: Function;
+    menuItemComponent?: Function;
 };
 
 export interface SelectOptionProps {

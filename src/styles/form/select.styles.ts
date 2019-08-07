@@ -35,12 +35,13 @@ export const SelectInputStyle = styled.input<SelectInputStyleProps>`
     }
 `;
 
-export const SelectMenuWrapperStyle = styled.div`
+export const SelectMenuStyle = styled.div`
     position: absolute;
     top: 100%;
     right: 0;
     left: 0;
     max-height: 250px;
+    overflow-y: auto;
     color: ${({ theme: { colors } }) => colors.dark};
     background: ${({ theme: { colors } }) => colors.white};
     border: 1px solid ${({ theme: { colors } }) => darken(0.1, colors.light)};
