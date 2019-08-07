@@ -19,12 +19,12 @@ export interface ThemeColorsInterface {
     [key: string]: string;
 }
 export interface ThemeVariablesInterface {
-    margin: string;
-    padding: string;
-    borderRadius: string;
-    maxWidth: string;
-    baseFontSize: string;
-    [key: string]: string;
+    margin: string | number;
+    padding: string | number;
+    borderRadius: string | number;
+    maxWidth: string | number;
+    baseFontSize: string | number;
+    [key: string]: string | number;
 }
 
 export interface ThemeProviderInterface extends ThemeInterface {

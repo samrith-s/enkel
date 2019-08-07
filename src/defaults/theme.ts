@@ -2,6 +2,8 @@ import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
     colors: {
+        black: '#222',
+        white: '#fff',
         dark: '#212026',
         light: '#f9f9f9',
         primary: '#f9703c',
@@ -13,10 +15,10 @@ export const theme: DefaultTheme = {
         red: '#d91d2a'
     },
     variables: {
-        margin: '10px',
-        padding: '10px',
+        margin: 10,
+        padding: 10,
         borderRadius: '5px',
-        maxWidth: '1200px',
+        maxWidth: 1200,
         baseFontSize: '14px'
     }
 };
