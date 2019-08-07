@@ -14,7 +14,7 @@ export { Paragraph } from 'components/typography/Paragraph';
 
 // Form components
 // export { Form } from 'components/form/Form';
-// export { default as Input } from 'components/Input';
+export { Input } from 'components/form/Input';
 export { Select } from 'components/form/Select';
 export { Button } from 'components/form/Button';
 // export { default as Checkbox } from 'components/Checkbox';
