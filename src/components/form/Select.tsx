@@ -4,27 +4,28 @@ import React, {
     useRef,
     useEffect,
     SyntheticEvent,
-    KeyboardEvent
-} from 'react';
+    KeyboardEvent,
+    ChangeEvent
+} from "react";
 
-import { EnkelComponent } from 'interfaces';
+import { EnkelComponent } from "interfaces";
 import {
     SelectProps,
     SelectOptionProps
-} from 'interfaces/form/select.interface';
+} from "interfaces/form/select.interface";
 
-import { stopPropagation } from 'utils/stopPropagation';
+import { stopPropagation } from "utils/stopPropagation";
 
 import {
     SelectStyle,
     SelectInputStyle,
     SelectMenuStyle,
     SelectMenuItemStyle
-} from 'styles/form/select.styles';
+} from "styles/form/select.styles";
 
 const SelectDefaultState = {
-    value: '',
-    label: ''
+    value: "",
+    label: ""
 };
 
 export const Select: EnkelComponent<SelectProps> = ({
@@ -33,7 +34,7 @@ export const Select: EnkelComponent<SelectProps> = ({
     inputComponent: InputComponent,
     menuComponent: MenuComponent,
     menuItemComponent: MenuItemComponent,
-    options,
+    options = [],
     optionRenderer,
     onChange,
     searchable,
@@ -42,7 +43,8 @@ export const Select: EnkelComponent<SelectProps> = ({
 }) => {
     const [value, setValue] = useState(propsValue || { ...SelectDefaultState });
     const [currentScroll, setCurrentScroll] = useState(0);
-    // const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
+    const [filteredOptions, setOptions] = useState(options);
     const [showMenu, setMenuDisplay] = useState(false);
     const thisRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -64,6 +66,8 @@ export const Select: EnkelComponent<SelectProps> = ({
         e.nativeEvent.stopImmediatePropagation();
         setValue(selectedValue);
         onChange && onChange(value);
+        setMenuDisplay(false);
+        setSearch("");
     };
 
     const handleFocus = (e: SyntheticEvent) => {
@@ -90,29 +94,31 @@ export const Select: EnkelComponent<SelectProps> = ({
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
 
-        if (options) {
+        let arrow =
+            e.key === "ArrowUp" || e.key === "ArrowDown" ? e.key : false;
+
+        if (filteredOptions) {
             let scrollValue = currentScroll;
+            if (arrow) {
+                if (arrow === "ArrowUp" && currentScroll > 0) {
+                    scrollValue--;
+                }
 
-            if (e.key === 'ArrowUp' && currentScroll > 0) {
-                scrollValue--;
+                if (
+                    arrow === "ArrowDown" &&
+                    currentScroll < filteredOptions.length - 1
+                ) {
+                    scrollValue++;
+                }
+
+                setCurrentScroll(scrollValue);
+                optionRefs[scrollValue].scrollIntoView({
+                    block: "nearest"
+                });
             }
 
-            if (
-                e.key === 'ArrowDown' &&
-                options &&
-                currentScroll < options.length - 1
-            ) {
-                scrollValue++;
-            }
-
-            setCurrentScroll(scrollValue);
-            optionRefs[scrollValue].scrollIntoView({
-                block: 'nearest'
-            });
-
-            if (e.key === 'Enter') {
-                handleChange(options[scrollValue])(e);
-                setMenuDisplay(false);
+            if (e.key === "Enter") {
+                handleChange(filteredOptions[scrollValue])(e);
             }
         }
 
@@ -125,22 +131,46 @@ export const Select: EnkelComponent<SelectProps> = ({
 
     const handleRef = (ref: any) => optionRefs.push(ref);
 
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>) =>
+        setSearch(e.target.value);
+
     useEffect(() => {
-        document.addEventListener('click', handleRootClose as EventListener);
+        document.addEventListener("click", handleRootClose as EventListener);
         return () =>
             document.removeEventListener(
-                'click',
+                "click",
                 handleRootClose as EventListener
             );
     }, [showMenu]);
 
     useEffect(() => {
-        if (!showMenu) {
+        if (search) {
+            const lowerCaseSearch = search.replace(/\s/g, "").toLowerCase();
+            setOptions(
+                options.filter(
+                    ({ value, label }) =>
+                        value
+                            .toString()
+                            .toLowerCase()
+                            .replace(/\s/g, "")
+                            .includes(lowerCaseSearch) ||
+                        label
+                            .toString()
+                            .toLowerCase()
+                            .replace(/\s/g, "")
+                            .includes(lowerCaseSearch)
+                )
+            );
             setCurrentScroll(0);
+        } else {
+            setOptions(options);
         }
-    }, [showMenu]);
+    }, [search]);
 
     const renderer: Function = optionRenderer || defaultRenderer;
+
+    const getAppropriateValue = () =>
+        searchable && showMenu ? search : value.label;
 
     return (
         <SelectComponent
@@ -154,15 +184,16 @@ export const Select: EnkelComponent<SelectProps> = ({
                 readOnly={!searchable}
                 placeholder="Select something..."
                 ref={inputRef}
-                value={value.label}
+                value={getAppropriateValue()}
                 menuIsOpen={showMenu}
                 onKeyDown={handleKeyDown}
                 onKeyUp={stopPropagation}
                 onKeyPress={stopPropagation}
+                onChange={handleSearch}
             />
             {showMenu && options && (
                 <SelectMenuComponent>
-                    {options.map((option, index) =>
+                    {filteredOptions.map((option, index) =>
                         React.cloneElement(renderer(option, index), {
                             onClick: handleChange(option),
                             onMouseOver: handleMouseOver(index),
