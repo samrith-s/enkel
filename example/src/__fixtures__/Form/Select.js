@@ -14,6 +14,6 @@ const SelectOptions = [
 
 export default (
     <ThemeProvider>
-        <Select options={SelectOptions} value={SelectOptions[0]} />
+        <Select options={SelectOptions} value={SelectOptions[0]} searchable />
     </ThemeProvider>
 );
