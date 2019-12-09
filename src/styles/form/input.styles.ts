@@ -1,5 +1,5 @@
-import styled from 'styled';
-import { darken, padding } from 'polished';
+import styled from "styled";
+import { darken, padding } from "polished";
 
 export const InputStyle = styled.input`
     display: inline-flex;
@@ -20,7 +20,7 @@ export const InputStyle = styled.input`
         border: 1px solid ${({ theme: { colors } }) => colors.primary};
     }
 
-    &[type='color'] {
+    &[type="color"] {
         ${({ theme: { variables } }) => variables.padding};
     }
 `;
