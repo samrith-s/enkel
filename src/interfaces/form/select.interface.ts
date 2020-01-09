@@ -1,4 +1,4 @@
-import { ComponentCommons } from 'interfaces';
+import { ComponentCommons } from "interfaces";
 
 export type SelectProps = ComponentCommons & {
     options?: SelectOptionProps[];
@@ -9,6 +9,7 @@ export type SelectProps = ComponentCommons & {
     inputComponent?: Function;
     menuComponent?: Function;
     menuItemComponent?: Function;
+    placeholder?: string;
 };
 
 export interface SelectOptionProps {

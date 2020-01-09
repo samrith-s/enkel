@@ -37,6 +37,7 @@ export const Select: EnkelComponent<SelectProps> = ({
     options = [],
     optionRenderer,
     onChange,
+    placeholder,
     searchable,
     value: propsValue,
     ...rest
@@ -182,7 +183,7 @@ export const Select: EnkelComponent<SelectProps> = ({
             <SelectInputComponent
                 type="text"
                 readOnly={!searchable}
-                placeholder="Select something..."
+                placeholder={placeholder || "Select something.."}
                 ref={inputRef}
                 value={getAppropriateValue()}
                 menuIsOpen={showMenu}
