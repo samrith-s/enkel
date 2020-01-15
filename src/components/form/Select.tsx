@@ -39,9 +39,11 @@ export const Select: EnkelComponent<SelectProps> = ({
     onChange,
     placeholder,
     searchable,
+    name,
+    closeOnSelect = true,
     value: propsValue,
     ...rest
-}) => {
+}): JSX.Element => {
     const [value, setValue] = useState(propsValue || { ...SelectDefaultState });
     const [currentScroll, setCurrentScroll] = useState(0);
     const [search, setSearch] = useState("");
@@ -56,13 +58,15 @@ export const Select: EnkelComponent<SelectProps> = ({
     const SelectMenuComponent = MenuComponent || SelectMenuStyle;
     const SelectMenuItemComponent = MenuItemComponent || SelectMenuItemStyle;
 
-    const defaultRenderer: Function = (option: SelectOptionProps) => (
+    const defaultRenderer: Function = (
+        option: SelectOptionProps
+    ): JSX.Element => (
         <SelectMenuItemComponent>{option.label}</SelectMenuItemComponent>
     );
 
-    const handleChange = (selectedValue: SelectOptionProps) => (
+    const handleChange = (selectedValue: SelectOptionProps): Function => (
         e: SyntheticEvent
-    ) => {
+    ): void => {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
         setValue(selectedValue);
@@ -71,7 +75,7 @@ export const Select: EnkelComponent<SelectProps> = ({
         setSearch("");
     };
 
-    const handleFocus = (e: SyntheticEvent) => {
+    const handleFocus = (e: SyntheticEvent): void => {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
         setMenuDisplay(true);
@@ -80,17 +84,18 @@ export const Select: EnkelComponent<SelectProps> = ({
         }
     };
 
-    const handleRootClose: Function = (e: SyntheticEvent) => {
+    const handleRootClose: Function = (e: SyntheticEvent): void => {
         if (
-            showMenu &&
-            thisRef.current &&
-            !thisRef.current.contains(e.currentTarget)
+            closeOnSelect ||
+            (showMenu &&
+                thisRef.current &&
+                !thisRef.current.contains(e.currentTarget))
         ) {
             setMenuDisplay(false);
         }
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): boolean => {
         e.persist();
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
@@ -121,23 +126,27 @@ export const Select: EnkelComponent<SelectProps> = ({
             if (e.key === "Enter") {
                 handleChange(filteredOptions[scrollValue])(e);
             }
+
+            return true;
         }
 
         return false;
     };
 
-    const handleMouseOver = (index: number) => () => {
+    const handleMouseOver = (index: number): Function => (): void => {
         setCurrentScroll(index);
     };
 
-    const handleRef = (ref: any) => optionRefs.push(ref);
+    const handleRef = (ref: any): void => {
+        optionRefs.push(ref);
+    };
 
-    const handleSearch = (e: ChangeEvent<HTMLInputElement>) =>
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>): void =>
         setSearch(e.target.value);
 
     useEffect(() => {
         document.addEventListener("click", handleRootClose as EventListener);
-        return () =>
+        return (): void =>
             document.removeEventListener(
                 "click",
                 handleRootClose as EventListener
@@ -192,6 +201,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 onKeyPress={stopPropagation}
                 onChange={handleSearch}
             />
+            <input type="hidden" value={value.value} name={name} />
             {showMenu && options && (
                 <SelectMenuComponent>
                     {filteredOptions.map((option, index) =>

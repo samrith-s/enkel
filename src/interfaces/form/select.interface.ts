@@ -10,6 +10,8 @@ export type SelectProps = ComponentCommons & {
     menuComponent?: Function;
     menuItemComponent?: Function;
     placeholder?: string;
+    name?: string;
+    closeOnSelect?: boolean;
 };
 
 export interface SelectOptionProps {
