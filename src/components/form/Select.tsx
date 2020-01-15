@@ -64,6 +64,13 @@ export const Select: EnkelComponent<SelectProps> = ({
         <SelectMenuItemComponent>{option.label}</SelectMenuItemComponent>
     );
 
+    const handleReset: Function = (closeMenu: boolean = false): void => {
+        closeMenu && setMenuDisplay(false);
+        setCurrentScroll(
+            options.findIndex(option => option.value === value.value)
+        );
+    };
+
     const handleChange = (selectedValue: SelectOptionProps): Function => (
         e: SyntheticEvent
     ): void => {
@@ -91,7 +98,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 thisRef.current &&
                 !thisRef.current.contains(e.currentTarget))
         ) {
-            setMenuDisplay(false);
+            handleReset(true);
         }
     };
 
@@ -123,6 +130,10 @@ export const Select: EnkelComponent<SelectProps> = ({
                 });
             }
 
+            if (e.key === "Escape") {
+                handleReset(true);
+            }
+
             if (e.key === "Enter") {
                 handleChange(filteredOptions[scrollValue])(e);
             }
@@ -137,6 +148,10 @@ export const Select: EnkelComponent<SelectProps> = ({
         setCurrentScroll(index);
     };
 
+    const handleMouseOut = (): void => {
+        handleReset();
+    };
+
     const handleRef = (ref: any): void => {
         optionRefs.push(ref);
     };
@@ -145,11 +160,16 @@ export const Select: EnkelComponent<SelectProps> = ({
         setSearch(e.target.value);
 
     useEffect(() => {
-        document.addEventListener("click", handleRootClose as EventListener);
+        document.addEventListener(
+            "click",
+            handleRootClose as EventListener,
+            true
+        );
         return (): void =>
             document.removeEventListener(
                 "click",
-                handleRootClose as EventListener
+                handleRootClose as EventListener,
+                true
             );
     }, [showMenu]);
 
@@ -188,6 +208,7 @@ export const Select: EnkelComponent<SelectProps> = ({
             className="select"
             ref={thisRef}
             onClick={handleFocus}
+            onMouseOut={handleMouseOut}
         >
             <SelectInputComponent
                 type="text"
