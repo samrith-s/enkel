@@ -1,11 +1,11 @@
-import styled from 'styled';
-import { padding, borderRadius, darken } from 'polished';
+import styled from "styled";
+import { padding, borderRadius, darken } from "polished";
 
 import {
     SelectStyleProps,
     SelectInputStyleProps,
     SelectMenuItemStyleProps
-} from 'interfaces/form/select.interface';
+} from "interfaces/form/select.interface";
 
 export const SelectStyle = styled.div<SelectStyleProps>`
     position: relative;
@@ -20,7 +20,7 @@ export const SelectInputStyle = styled.input<SelectInputStyleProps>`
     ${({ menuIsOpen, theme: { variables } }) =>
         !menuIsOpen
             ? `border-radius: ${variables.borderRadius}`
-            : borderRadius('top', variables.borderRadius)};
+            : borderRadius("top", variables.borderRadius)};
     font-size: inherit;
     background: ${({ theme: { colors } }) => colors.white};
     border: 1px solid
@@ -41,6 +41,7 @@ export const SelectMenuStyle = styled.div`
     top: 100%;
     right: 0;
     left: 0;
+    z-index: 999;
     max-height: 250px;
     overflow-y: auto;
     color: ${({ theme: { colors } }) => colors.dark};
@@ -48,7 +49,7 @@ export const SelectMenuStyle = styled.div`
     border: 1px solid ${({ theme: { colors } }) => darken(0.1, colors.light)};
     border-top: 0;
     ${({ theme: { variables } }) =>
-        borderRadius('bottom', variables.borderRadius)};
+        borderRadius("bottom", variables.borderRadius)};
 `;
 
 export const SelectMenuItemStyle = styled.div<SelectMenuItemStyleProps>`
@@ -63,7 +64,7 @@ export const SelectMenuItemStyle = styled.div<SelectMenuItemStyleProps>`
     &:last-of-type {
         border: 0;
         ${({ theme: { variables } }) =>
-            borderRadius('bottom', variables.borderRadius)};
+            borderRadius("bottom", variables.borderRadius)};
     }
 
     &:hover {
