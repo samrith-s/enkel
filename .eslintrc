@@ -6,15 +6,12 @@
         "prettier",
         "prettier/react"
     ],
-    "plugins": ["react", "react-hooks", "import", "prettier"],
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "sourceType": "module"
-    },
+    "plugins": ["@typescript-eslint", "react", "react-hooks", "import", "prettier"],
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".jsx"],
+                "extensions": [".ts", ".tsx"],
                 "paths": ["src"]
             }
         },
@@ -88,5 +85,4 @@
                 "singleQuote": true
             }
         ]
-    }
 }
