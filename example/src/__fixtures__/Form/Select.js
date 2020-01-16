@@ -1,19 +1,23 @@
-import React from 'react';
-import { ThemeProvider, Select } from 'enkel-ui';
+import React from "react";
+import { ThemeProvider, Select } from "enkel-ui";
 
 const SelectOptions = [
     {
         value: 1,
-        label: 'Yes'
+        label: "Yes"
     },
     {
         value: 0,
-        label: 'No'
+        label: "No"
     }
 ];
 
 export default (
     <ThemeProvider>
-        <Select options={SelectOptions} value={SelectOptions[0]} searchable />
+        <Select
+            options={SelectOptions}
+            defaultValue={SelectOptions[0]}
+            searchable
+        />
     </ThemeProvider>
 );
