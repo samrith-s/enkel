@@ -22,11 +22,7 @@ import {
     SelectMenuStyle,
     SelectMenuItemStyle
 } from "styles/form/select.styles";
-
-const SelectDefaultState = {
-    value: "",
-    label: ""
-};
+import { hasValue } from "utils";
 
 export const Select: EnkelComponent<SelectProps> = ({
     children,
@@ -42,9 +38,10 @@ export const Select: EnkelComponent<SelectProps> = ({
     name,
     closeOnSelect = true,
     value: propsValue,
+    defaultValue,
     ...rest
 }): JSX.Element => {
-    const [value, setValue] = useState(propsValue || { ...SelectDefaultState });
+    const [value, setValue] = useState(propsValue || null);
     const [currentScroll, setCurrentScroll] = useState(0);
     const [search, setSearch] = useState("");
     const [filteredOptions, setOptions] = useState(options);
@@ -64,11 +61,24 @@ export const Select: EnkelComponent<SelectProps> = ({
         <SelectMenuItemComponent>{option.label}</SelectMenuItemComponent>
     );
 
-    const handleReset: Function = (closeMenu: boolean = false): void => {
+    const handleReset: Function = (
+        closeMenu: boolean = false,
+        selectedValue?: SelectOptionProps
+    ): void => {
         closeMenu && setMenuDisplay(false);
-        setCurrentScroll(
-            options.findIndex(option => option.value === value.value)
-        );
+        const index = options.findIndex(option => {
+            if (selectedValue) {
+                return option.value === selectedValue.value;
+            } else if (value) {
+                return option.value === value.value;
+            } else if (defaultValue) {
+                return option.value === defaultValue.value;
+            }
+
+            return false;
+        });
+
+        setCurrentScroll(index !== -1 ? index : 0);
     };
 
     const handleChange = (selectedValue: SelectOptionProps): Function => (
@@ -78,7 +88,7 @@ export const Select: EnkelComponent<SelectProps> = ({
         e.nativeEvent.stopImmediatePropagation();
         setValue(selectedValue);
         onChange && onChange(value);
-        setMenuDisplay(false);
+        handleReset(closeOnSelect, selectedValue);
         setSearch("");
     };
 
@@ -91,12 +101,17 @@ export const Select: EnkelComponent<SelectProps> = ({
         }
     };
 
+    const handleRootEscape: Function = (e: KeyboardEvent): void => {
+        if (showMenu && e.key === "Escape") {
+            handleReset(true);
+        }
+    };
+
     const handleRootClose: Function = (e: SyntheticEvent): void => {
         if (
-            closeOnSelect ||
-            (showMenu &&
-                thisRef.current &&
-                !thisRef.current.contains(e.currentTarget))
+            showMenu &&
+            thisRef.current &&
+            !thisRef.current.contains(e.target as Node)
         ) {
             handleReset(true);
         }
@@ -130,10 +145,6 @@ export const Select: EnkelComponent<SelectProps> = ({
                 });
             }
 
-            if (e.key === "Escape") {
-                handleReset(true);
-            }
-
             if (e.key === "Enter") {
                 handleChange(filteredOptions[scrollValue])(e);
             }
@@ -165,12 +176,23 @@ export const Select: EnkelComponent<SelectProps> = ({
             handleRootClose as EventListener,
             true
         );
-        return (): void =>
+        document.addEventListener(
+            "keyup",
+            handleRootEscape as EventListener,
+            true
+        );
+        return (): void => {
             document.removeEventListener(
                 "click",
                 handleRootClose as EventListener,
                 true
             );
+            document.removeEventListener(
+                "keyup",
+                handleRootEscape as EventListener,
+                true
+            );
+        };
     }, [showMenu]);
 
     useEffect(() => {
@@ -199,8 +221,31 @@ export const Select: EnkelComponent<SelectProps> = ({
 
     const renderer: Function = optionRenderer || defaultRenderer;
 
-    const getAppropriateValue = () =>
-        searchable && showMenu ? search : value.label;
+    const getAppropriateValue = (): SelectOptionProps => {
+        const inputValues: SelectOptionProps = {
+            value: "",
+            label: ""
+        };
+
+        if (value && hasValue(value.value)) {
+            inputValues.label = value.label;
+            inputValues.value = value.value;
+        } else if (defaultValue && hasValue(defaultValue.value)) {
+            inputValues.label = defaultValue.label;
+            inputValues.value = defaultValue.value;
+        }
+
+        if (showMenu && searchable && hasValue(search)) {
+            inputValues.label = search;
+        }
+
+        return inputValues;
+    };
+
+    const {
+        value: trueValue,
+        label: trueLabel
+    }: SelectOptionProps = getAppropriateValue();
 
     return (
         <SelectComponent
@@ -215,14 +260,14 @@ export const Select: EnkelComponent<SelectProps> = ({
                 readOnly={!searchable}
                 placeholder={placeholder || "Select something.."}
                 ref={inputRef}
-                value={getAppropriateValue()}
+                value={trueLabel}
                 menuIsOpen={showMenu}
                 onKeyDown={handleKeyDown}
                 onKeyUp={stopPropagation}
                 onKeyPress={stopPropagation}
                 onChange={handleSearch}
             />
-            <input type="hidden" value={value.value} name={name} />
+            <input type="hidden" value={trueValue} name={name} />
             {showMenu && options && (
                 <SelectMenuComponent>
                     {filteredOptions.map((option, index) =>
@@ -230,7 +275,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                             onClick: handleChange(option),
                             onMouseOver: handleMouseOver(index),
                             key: `enkel-select-option-${index}`,
-                            isSelected: value.value === option.value,
+                            isSelected: trueValue === option.value,
                             isHighlighted: currentScroll === index,
                             ref: handleRef
                         })

@@ -5,6 +5,7 @@ export type SelectProps = ComponentCommons & {
     optionRenderer?: Function;
     onChange: Function;
     value?: SelectOptionProps;
+    defaultValue?: SelectOptionProps;
     searchable?: boolean;
     inputComponent?: Function;
     menuComponent?: Function;
