@@ -19,5 +19,6 @@ export default (
             defaultValue={SelectOptions[0]}
             searchable
         />
+        <Select options={SelectOptions} searchable />
     </ThemeProvider>
 );
