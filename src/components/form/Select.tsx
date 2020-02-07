@@ -87,7 +87,7 @@ export const Select: EnkelComponent<SelectProps> = ({
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
         setValue(selectedValue);
-        onChange && onChange(value);
+        onChange && onChange(selectedValue);
         handleReset(closeOnSelect, selectedValue);
         setSearch("");
     };
