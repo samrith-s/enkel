@@ -41,11 +41,13 @@ export const Select: EnkelComponent<SelectProps> = ({
     defaultValue,
     ...rest
 }): JSX.Element => {
-    const [value, setValue] = useState(propsValue || null);
-    const [currentScroll, setCurrentScroll] = useState(0);
+    const [value, setValue] = useState(propsValue || defaultValue);
+    const [currentScroll, setCurrentScroll] = useState(
+        value ? options.findIndex(option => option.value === value.value) : 0
+    );
     const [search, setSearch] = useState("");
     const [filteredOptions, setOptions] = useState(options);
-    const [showMenu, setMenuDisplay] = useState(false);
+    const [showMenu, shouldShowMenu] = useState(false);
     const thisRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const optionRefs: any[] = [];
@@ -62,10 +64,11 @@ export const Select: EnkelComponent<SelectProps> = ({
     );
 
     const handleReset: Function = (
-        closeMenu: boolean = false,
+        closeMenu?: boolean,
         selectedValue?: SelectOptionProps
     ): void => {
-        closeMenu && setMenuDisplay(false);
+        selectedValue && setValue(selectedValue);
+        closeMenu && shouldShowMenu(false);
         const index = options.findIndex(option => {
             if (selectedValue) {
                 return option.value === selectedValue.value;
@@ -79,23 +82,22 @@ export const Select: EnkelComponent<SelectProps> = ({
         });
 
         setCurrentScroll(index !== -1 ? index : 0);
+        setSearch("");
+        selectedValue && onChange && onChange(selectedValue);
     };
 
     const handleChange = (selectedValue: SelectOptionProps): Function => (
         e: SyntheticEvent
     ): void => {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        setValue(selectedValue);
-        onChange && onChange(selectedValue);
+        e.persist();
+        stopPropagation(e);
         handleReset(closeOnSelect, selectedValue);
-        setSearch("");
     };
 
     const handleFocus = (e: SyntheticEvent): void => {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        setMenuDisplay(true);
+        e.persist();
+        stopPropagation(e);
+        shouldShowMenu(true);
         if (inputRef && inputRef.current) {
             inputRef.current.focus();
         }
@@ -119,8 +121,7 @@ export const Select: EnkelComponent<SelectProps> = ({
 
     const handleKeyDown = (e: KeyboardEvent): boolean => {
         e.persist();
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
+        stopPropagation(e);
 
         let arrow =
             e.key === "ArrowUp" || e.key === "ArrowDown" ? e.key : false;
@@ -157,10 +158,6 @@ export const Select: EnkelComponent<SelectProps> = ({
 
     const handleMouseOver = (index: number): Function => (): void => {
         setCurrentScroll(index);
-    };
-
-    const handleMouseOut = (): void => {
-        handleReset();
     };
 
     const handleRef = (ref: any): void => {
@@ -253,7 +250,6 @@ export const Select: EnkelComponent<SelectProps> = ({
             className="select"
             ref={thisRef}
             onClick={handleFocus}
-            onMouseOut={handleMouseOut}
         >
             <SelectInputComponent
                 type="text"
@@ -270,16 +266,24 @@ export const Select: EnkelComponent<SelectProps> = ({
             <input type="hidden" value={trueValue} name={name} />
             {showMenu && options && (
                 <SelectMenuComponent>
-                    {filteredOptions.map((option, index) =>
-                        React.cloneElement(renderer(option, index), {
-                            onClick: handleChange(option),
-                            onMouseOver: handleMouseOver(index),
-                            key: `enkel-select-option-${index}`,
-                            isSelected: trueValue === option.value,
-                            isHighlighted: currentScroll === index,
-                            ref: handleRef
-                        })
-                    )}
+                    {filteredOptions.map((option, index) => {
+                        const isSelected = trueValue === option.value;
+                        const isHighlighted = currentScroll === index;
+
+                        return React.cloneElement(
+                            renderer(option, index, isSelected, isHighlighted),
+                            {
+                                key: `enkel-select-option-${index}`,
+                                onClick: handleChange(option),
+                                onMouseOver: handleMouseOver(index),
+                                ref: handleRef,
+                                option,
+                                index,
+                                isSelected,
+                                isHighlighted
+                            }
+                        );
+                    })}
                 </SelectMenuComponent>
             )}
         </SelectComponent>
