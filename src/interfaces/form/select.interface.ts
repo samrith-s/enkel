@@ -18,6 +18,7 @@ export type SelectProps = ComponentCommons & {
 export interface SelectOptionProps {
     value: any;
     label: string;
+    [key: string]: any;
 }
 
 export interface SelectStyleProps {}
