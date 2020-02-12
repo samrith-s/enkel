@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { SelectOptionProps } from "interfaces/form/select.interface";
 
 export function groupDisplayName(
     componentGroup: string,
@@ -23,4 +24,15 @@ export function groupDisplayName(
 
 export function hasValue(value: any): boolean {
     return value !== null && value !== undefined;
+}
+
+export function getDefaultValue(
+    defaultValue: SelectOptionProps | any,
+    options: SelectOptionProps[]
+) {
+    if (typeof defaultValue !== "object" && !Array.isArray(defaultValue)) {
+        return options.find(option => option.value === defaultValue);
+    }
+
+    return defaultValue;
 }

@@ -15,6 +15,7 @@ import {
 } from "interfaces/form/select.interface";
 
 import { stopPropagation } from "utils/stopPropagation";
+import { hasValue, getDefaultValue } from "utils";
 
 import {
     SelectStyle,
@@ -22,7 +23,6 @@ import {
     SelectMenuStyle,
     SelectMenuItemStyle
 } from "styles/form/select.styles";
-import { hasValue } from "utils";
 
 export const Select: EnkelComponent<SelectProps> = ({
     children,
@@ -41,7 +41,9 @@ export const Select: EnkelComponent<SelectProps> = ({
     defaultValue,
     ...rest
 }): JSX.Element => {
-    const [value, setValue] = useState(propsValue || defaultValue);
+    const [value, setValue] = useState(
+        propsValue || getDefaultValue(defaultValue, options)
+    );
     const [currentScroll, setCurrentScroll] = useState(
         value ? options.findIndex(option => option.value === value.value) : 0
     );
