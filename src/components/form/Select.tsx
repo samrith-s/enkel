@@ -52,7 +52,7 @@ export const Select: EnkelComponent<SelectProps> = ({
     const [showMenu, shouldShowMenu] = useState(false);
     const thisRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const optionRefs: any[] = [];
+    let optionRefs: any[] = [];
 
     const SelectComponent = Component || SelectStyle;
     const SelectInputComponent = InputComponent || SelectInputStyle;
@@ -85,6 +85,7 @@ export const Select: EnkelComponent<SelectProps> = ({
 
         setCurrentScroll(index !== -1 ? index : 0);
         setSearch("");
+        optionRefs = [];
         selectedValue && onChange && onChange(selectedValue);
     };
 
@@ -217,6 +218,14 @@ export const Select: EnkelComponent<SelectProps> = ({
             setOptions(options);
         }
     }, [search]);
+
+    useEffect(() => {
+        if (JSON.stringify(filteredOptions) !== JSON.stringify(options)) {
+            setOptions(options);
+            handleReset(false);
+            setValue(null);
+        }
+    }, [filteredOptions, setOptions, options]);
 
     const renderer: Function = optionRenderer || defaultRenderer;
 
