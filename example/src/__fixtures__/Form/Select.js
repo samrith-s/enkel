@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider, Select } from "enkel-ui";
 
 const SelectOptions = [
@@ -12,13 +12,24 @@ const SelectOptions = [
     }
 ];
 
-export default (
-    <ThemeProvider>
-        <Select
-            options={SelectOptions}
-            defaultValue={SelectOptions[0]}
-            searchable
-        />
-        <Select options={SelectOptions} searchable defaultValue={0} />
-    </ThemeProvider>
-);
+export default function MyComponent() {
+    const [options, setOptions] = useState(SelectOptions);
+
+    const handleChange = value => {
+        setOptions(
+            SelectOptions.filter(option => option.value !== value.value)
+        );
+    };
+
+    return (
+        <ThemeProvider>
+            <Select
+                options={SelectOptions}
+                defaultValue={SelectOptions[0]}
+                searchable
+                onChange={handleChange}
+            />
+            <Select options={options} searchable defaultValue={0} />
+        </ThemeProvider>
+    );
+}
