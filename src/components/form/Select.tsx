@@ -223,7 +223,6 @@ export const Select: EnkelComponent<SelectProps> = ({
         if (JSON.stringify(filteredOptions) !== JSON.stringify(options)) {
             setOptions(options);
             handleReset(false);
-            setValue(null);
         }
     }, [filteredOptions, setOptions, options]);
 
