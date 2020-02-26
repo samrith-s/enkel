@@ -288,6 +288,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 onChange={handleSearch}
                 onFocus={handleFocus}
                 autoFocus={autoFocus}
+                tabIndex="0"
             />
             <input type="hidden" value={trueValue} name={name} ref={innerRef} />
             {showMenu && options && (
