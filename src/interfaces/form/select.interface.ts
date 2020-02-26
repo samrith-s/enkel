@@ -1,4 +1,5 @@
 import { ComponentCommons } from "interfaces";
+import { RefObject } from "react";
 
 export type SelectProps = ComponentCommons & {
     options?: SelectOptionProps[];
@@ -13,6 +14,7 @@ export type SelectProps = ComponentCommons & {
     placeholder?: string;
     name?: string;
     closeOnSelect?: boolean;
+    innerRef: RefObject<HTMLInputElement>;
 };
 
 export interface SelectOptionProps {

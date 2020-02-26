@@ -39,11 +39,10 @@ export const Select: EnkelComponent<SelectProps> = ({
     closeOnSelect = true,
     value: propsValue,
     defaultValue,
+    innerRef,
     ...rest
 }): JSX.Element => {
-    const [value, setValue] = useState(
-        propsValue || getDefaultValue(defaultValue, options)
-    );
+    const [value, setValue] = useState(getDefaultValue(defaultValue, options));
     const [currentScroll, setCurrentScroll] = useState(
         value ? options.findIndex(option => option.value === value.value) : 0
     );
@@ -86,7 +85,7 @@ export const Select: EnkelComponent<SelectProps> = ({
         setCurrentScroll(index !== -1 ? index : 0);
         setSearch("");
         optionRefs = [];
-        selectedValue && onChange && onChange(selectedValue);
+        selectedValue && !propsValue && onChange && onChange(selectedValue);
     };
 
     const handleChange = (selectedValue: SelectOptionProps): Function => (
@@ -234,7 +233,19 @@ export const Select: EnkelComponent<SelectProps> = ({
             label: ""
         };
 
-        if (value && hasValue(value.value)) {
+        if (propsValue && hasValue(propsValue)) {
+            console.log("propsvalue", propsValue);
+            if (typeof propsValue === "object") {
+                inputValues.label = propsValue.label;
+                inputValues.value = propsValue.value;
+            } else {
+                const currentValue = filteredOptions.find(
+                    opt => opt.value === propsValue
+                ) as SelectOptionProps;
+                inputValues.label = currentValue.label;
+                inputValues.value = currentValue.label;
+            }
+        } else if (value && hasValue(value.value)) {
             inputValues.label = value.label;
             inputValues.value = value.value;
         } else if (defaultValue && hasValue(defaultValue.value)) {
@@ -273,7 +284,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 onKeyPress={stopPropagation}
                 onChange={handleSearch}
             />
-            <input type="hidden" value={trueValue} name={name} />
+            <input type="hidden" value={trueValue} name={name} ref={innerRef} />
             {showMenu && options && (
                 <SelectMenuComponent>
                     {filteredOptions.map((option, index) => {
