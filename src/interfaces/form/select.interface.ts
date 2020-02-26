@@ -15,6 +15,7 @@ export type SelectProps = ComponentCommons & {
     name?: string;
     closeOnSelect?: boolean;
     innerRef: RefObject<HTMLInputElement>;
+    autoFocus: boolean;
 };
 
 export interface SelectOptionProps {

@@ -40,6 +40,7 @@ export const Select: EnkelComponent<SelectProps> = ({
     value: propsValue,
     defaultValue,
     innerRef,
+    autoFocus,
     ...rest
 }): JSX.Element => {
     const [value, setValue] = useState(getDefaultValue(defaultValue, options));
@@ -286,6 +287,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 onKeyPress={stopPropagation}
                 onChange={handleSearch}
                 onFocus={handleFocus}
+                autoFocus={autoFocus}
             />
             <input type="hidden" value={trueValue} name={name} ref={innerRef} />
             {showMenu && options && (
