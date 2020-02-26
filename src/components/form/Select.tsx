@@ -125,34 +125,36 @@ export const Select: EnkelComponent<SelectProps> = ({
         e.persist();
         stopPropagation(e);
 
-        let arrow =
-            e.key === "ArrowUp" || e.key === "ArrowDown" ? e.key : false;
+        if (showMenu) {
+            let arrow =
+                e.key === "ArrowUp" || e.key === "ArrowDown" ? e.key : false;
 
-        if (filteredOptions) {
-            let scrollValue = currentScroll;
-            if (arrow) {
-                if (arrow === "ArrowUp" && currentScroll > 0) {
-                    scrollValue--;
+            if (filteredOptions) {
+                let scrollValue = currentScroll;
+                if (arrow) {
+                    if (arrow === "ArrowUp" && currentScroll > 0) {
+                        scrollValue--;
+                    }
+
+                    if (
+                        arrow === "ArrowDown" &&
+                        currentScroll < filteredOptions.length - 1
+                    ) {
+                        scrollValue++;
+                    }
+
+                    setCurrentScroll(scrollValue);
+                    optionRefs[scrollValue].scrollIntoView({
+                        block: "nearest"
+                    });
                 }
 
-                if (
-                    arrow === "ArrowDown" &&
-                    currentScroll < filteredOptions.length - 1
-                ) {
-                    scrollValue++;
+                if (e.key === "Enter") {
+                    handleChange(filteredOptions[scrollValue])(e);
                 }
 
-                setCurrentScroll(scrollValue);
-                optionRefs[scrollValue].scrollIntoView({
-                    block: "nearest"
-                });
+                return true;
             }
-
-            if (e.key === "Enter") {
-                handleChange(filteredOptions[scrollValue])(e);
-            }
-
-            return true;
         }
 
         return false;
@@ -283,6 +285,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                 onKeyUp={stopPropagation}
                 onKeyPress={stopPropagation}
                 onChange={handleSearch}
+                onFocus={handleFocus}
             />
             <input type="hidden" value={trueValue} name={name} ref={innerRef} />
             {showMenu && options && (
