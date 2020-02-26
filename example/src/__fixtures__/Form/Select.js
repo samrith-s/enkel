@@ -13,9 +13,11 @@ const SelectOptions = [
 ];
 
 export default function MyComponent() {
+    const [value, setValue] = useState(1);
     const [options, setOptions] = useState(SelectOptions);
 
     const handleChange = value => {
+        setValue(value.value);
         setOptions(
             SelectOptions.filter(option => option.value !== value.value)
         );
@@ -25,7 +27,7 @@ export default function MyComponent() {
         <ThemeProvider>
             <Select
                 options={SelectOptions}
-                defaultValue={SelectOptions[0]}
+                value={value}
                 searchable
                 onChange={handleChange}
             />
