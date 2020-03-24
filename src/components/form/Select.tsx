@@ -86,7 +86,7 @@ export const Select: EnkelComponent<SelectProps> = ({
         setCurrentScroll(index !== -1 ? index : 0);
         setSearch("");
         optionRefs = [];
-        selectedValue && !propsValue && onChange && onChange(selectedValue);
+        selectedValue && onChange && onChange(selectedValue);
     };
 
     const handleChange = (selectedValue: SelectOptionProps): Function => (
