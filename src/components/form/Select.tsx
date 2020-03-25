@@ -102,13 +102,9 @@ export const Select: EnkelComponent<SelectProps> = ({
     const handleFocus = (e: SyntheticEvent): void => {
         e.persist();
         stopPropagation(e);
-        if (!showMenu) {
-            shouldShowMenu(true);
-            if (inputRef && inputRef.current) {
-                inputRef.current.focus();
-            }
-        } else {
-            shouldShowMenu(false);
+        shouldShowMenu(true);
+        if (inputRef && inputRef.current) {
+            inputRef.current.focus();
         }
     };
 
@@ -274,8 +270,13 @@ export const Select: EnkelComponent<SelectProps> = ({
     }: SelectOptionProps = getAppropriateValue();
 
     return (
-        <SelectComponent {...rest} className="select" ref={thisRef}>
-            <SelectInputWrapper onClick={handleFocus}>
+        <SelectComponent
+            {...rest}
+            className="select"
+            ref={thisRef}
+            onSelect={handleFocus}
+        >
+            <SelectInputWrapper>
                 <SelectInputComponent
                     type="text"
                     readOnly={!searchable}
