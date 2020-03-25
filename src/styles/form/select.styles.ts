@@ -16,7 +16,12 @@ export const SelectStyle = styled.div<SelectStyleProps>`
 export const SelectInputStyle = styled.input<SelectInputStyleProps>`
     width: 100%;
     ${({ theme: { variables } }) =>
-        padding(+variables.padding, +variables.padding * 1.5)};
+        padding(
+            +variables.padding,
+            +variables.padding * 3.5,
+            +variables.padding,
+            +variables.padding * 1.5
+        )};
     ${({ menuIsOpen, theme: { variables } }) =>
         !menuIsOpen
             ? `border-radius: ${variables.borderRadius}`
@@ -34,6 +39,23 @@ export const SelectInputStyle = styled.input<SelectInputStyleProps>`
     &:focus {
         border: 1px solid ${({ theme: { colors } }) => colors.primary};
     }
+`;
+
+export const SelectInputWrapper = styled.div`
+    position: relative;
+    display: block;
+`;
+
+export const SelectIcon = styled.span`
+    position: absolute;
+    top: 2px;
+    right: ${({ theme: { variables } }) => +variables.padding * 1.5}px;
+    bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 20px;
+    color: ${({ theme: { colors } }) => colors.primary};
 `;
 
 export const SelectMenuStyle = styled.div`

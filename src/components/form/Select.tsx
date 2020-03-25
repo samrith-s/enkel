@@ -21,7 +21,9 @@ import {
     SelectStyle,
     SelectInputStyle,
     SelectMenuStyle,
-    SelectMenuItemStyle
+    SelectMenuItemStyle,
+    SelectInputWrapper,
+    SelectIcon
 } from "styles/form/select.styles";
 
 export const Select: EnkelComponent<SelectProps> = ({
@@ -100,9 +102,13 @@ export const Select: EnkelComponent<SelectProps> = ({
     const handleFocus = (e: SyntheticEvent): void => {
         e.persist();
         stopPropagation(e);
-        shouldShowMenu(true);
-        if (inputRef && inputRef.current) {
-            inputRef.current.focus();
+        if (!showMenu) {
+            shouldShowMenu(true);
+            if (inputRef && inputRef.current) {
+                inputRef.current.focus();
+            }
+        } else {
+            shouldShowMenu(false);
         }
     };
 
@@ -237,7 +243,6 @@ export const Select: EnkelComponent<SelectProps> = ({
         };
 
         if (propsValue && hasValue(propsValue)) {
-            console.log("propsvalue", propsValue);
             if (typeof propsValue === "object") {
                 inputValues.label = propsValue.label;
                 inputValues.value = propsValue.value;
@@ -269,27 +274,25 @@ export const Select: EnkelComponent<SelectProps> = ({
     }: SelectOptionProps = getAppropriateValue();
 
     return (
-        <SelectComponent
-            {...rest}
-            className="select"
-            ref={thisRef}
-            onClick={handleFocus}
-        >
-            <SelectInputComponent
-                type="text"
-                readOnly={!searchable}
-                placeholder={placeholder || "Select something.."}
-                ref={inputRef}
-                value={trueLabel}
-                menuIsOpen={showMenu}
-                onKeyDown={handleKeyDown}
-                onKeyUp={stopPropagation}
-                onKeyPress={stopPropagation}
-                onChange={handleSearch}
-                onFocus={handleFocus}
-                autoFocus={autoFocus}
-                tabIndex="0"
-            />
+        <SelectComponent {...rest} className="select" ref={thisRef}>
+            <SelectInputWrapper onClick={handleFocus}>
+                <SelectInputComponent
+                    type="text"
+                    readOnly={!searchable}
+                    placeholder={placeholder || "Select something.."}
+                    ref={inputRef}
+                    value={trueLabel}
+                    menuIsOpen={showMenu}
+                    onKeyDown={handleKeyDown}
+                    onKeyUp={stopPropagation}
+                    onKeyPress={stopPropagation}
+                    onChange={handleSearch}
+                    onFocus={handleFocus}
+                    autoFocus={autoFocus}
+                    tabIndex="0"
+                />
+                <SelectIcon>{showMenu ? "▲" : "▼"}</SelectIcon>
+            </SelectInputWrapper>
             <input type="hidden" value={trueValue} name={name} ref={innerRef} />
             {showMenu && options && (
                 <SelectMenuComponent>
@@ -320,6 +323,7 @@ export const Select: EnkelComponent<SelectProps> = ({
 Select.Style = {
     Main: SelectStyle,
     Input: SelectInputStyle,
+    InputWrapper: SelectInputWrapper,
     Menu: SelectMenuStyle,
     MenuItem: SelectMenuItemStyle
 };
