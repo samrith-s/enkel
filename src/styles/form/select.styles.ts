@@ -1,5 +1,5 @@
 import styled, { css } from "styled";
-import { padding, borderRadius, darken, lighten } from "polished";
+import { padding, borderRadius, darken } from "polished";
 
 import {
     SelectStyleProps,
