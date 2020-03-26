@@ -292,7 +292,7 @@ export const Select: EnkelComponent<SelectProps> = ({
                     autoFocus={autoFocus}
                     tabIndex="0"
                 />
-                <SelectIcon>{showMenu ? "▲" : "▼"}</SelectIcon>
+                <SelectIcon invert={showMenu}>⌵</SelectIcon>
             </SelectInputWrapper>
             <input type="hidden" value={trueValue} name={name} ref={innerRef} />
             {showMenu && options && (

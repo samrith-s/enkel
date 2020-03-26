@@ -34,3 +34,7 @@ export interface SelectMenuItemStyleProps {
     isSelected?: boolean;
     isHighlighted?: boolean;
 }
+
+export interface SelectIconStyleProps {
+    invert?: boolean;
+}

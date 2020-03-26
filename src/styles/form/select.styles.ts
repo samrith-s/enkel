@@ -1,10 +1,11 @@
-import styled from "styled";
-import { padding, borderRadius, darken } from "polished";
+import styled, { css } from "styled";
+import { padding, borderRadius, darken, lighten } from "polished";
 
 import {
     SelectStyleProps,
     SelectInputStyleProps,
-    SelectMenuItemStyleProps
+    SelectMenuItemStyleProps,
+    SelectIconStyleProps
 } from "interfaces/form/select.interface";
 
 export const SelectStyle = styled.div<SelectStyleProps>`
@@ -46,7 +47,7 @@ export const SelectInputWrapper = styled.div`
     display: block;
 `;
 
-export const SelectIcon = styled.span`
+export const SelectIcon = styled.span<SelectIconStyleProps>`
     position: absolute;
     top: 2px;
     right: ${({ theme: { variables } }) => +variables.padding * 1.5}px;
@@ -55,7 +56,16 @@ export const SelectIcon = styled.span`
     align-items: center;
     justify-content: flex-end;
     width: 20px;
-    color: ${({ theme: { colors } }) => colors.primary};
+    color: ${({ theme: { colors }, invert }) =>
+        invert ? colors.primary : darken(0.1, colors.light)};
+    font-size: 20px;
+    line-height: ${({ invert }) => (invert ? 0 : 2)};
+
+    ${props =>
+        props.invert &&
+        css`
+            transform: rotateX(180deg);
+        `}
 `;
 
 export const SelectMenuStyle = styled.div`
